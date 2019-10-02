@@ -10,6 +10,9 @@ int main()
   string line; //to store a single line of a text file
   fstream fileStream; //to open a file for reading
 
+  int numLines = 0;
+  int numChars = 0;
+
   cout<<"What file do you want to open? ";
   getline(cin, fileName);
   
@@ -23,11 +26,18 @@ int main()
     while(!(fileStream.eof())) {
    
     getline(fileStream, line);
+
+    if(!line.empty()) {
     cout << line << endl;
+    numLines++;
+    numChars = line.length();
+   }
       
     }
+    cout << "File: " << fileName << endl;
+    cout << "Lines: " << numLines << endl;
+    cout << "Characters: " << numChars << endl;
     //STEP 3: repeat the following until the end-of-file (eof) has been reached...  
-
     // 3A: read a line from fileStream into the variable line
     // 3B: display the line, followed by an endline
   
