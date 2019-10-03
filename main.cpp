@@ -9,11 +9,14 @@ int main()
   string fileName; //to get the name of the file to open
   string line; //to store a single line of a text file
   fstream fileStream; //to open a file for reading
-  int numLines = 0;
-  int numChars = 0;
+  int numLines;
+  int numChars;
   char choice;
 
   do {
+    numLines = 0;
+    numChars = 0;
+
     cout<<"What file do you want to open? ";
     getline(cin, fileName);
   
@@ -30,7 +33,7 @@ int main()
     if(!line.empty()) {
     cout << line << endl;
     numLines++;
-    numChars = line.length();
+    numChars = numChars + line.length();
      }
     }
     //STEP 3: repeat the following until the end-of-file (eof) has been reached...  
@@ -40,9 +43,9 @@ int main()
    }
    
    else {
-    cout << fileName << " could not be opend.\n";
-   }
-   
+    cout << fileName << " could not be opened.\n";
+   }  
+    
     cout << "METADATA" << endl;
     cout << "File: " << fileName << endl;
     cout << "Lines: " << numLines << endl;
@@ -51,10 +54,10 @@ int main()
     cout << "Analyze another file (y/n)? ";
     cin >> choice;
     cin.ignore();
+   fileStream.close();
    }while(choice == 'y' || choice == 'Y');
     
     //STEP 4: close the fileStream
-   fileStream.close();
   
 
   /* else
